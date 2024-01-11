@@ -9,10 +9,10 @@ public class Personaje {
     private String recurso;
     private String alcance;
     private int anyo;
-    private String posicion;
+    private List<Posicion> posicion;
     private List<Habilidad> habilidadList;
 
-    public Personaje(int id, String nombre, String genero, String recurso, String alcance, int anyo, String posicion, List<Habilidad> habilidadList) {
+    public Personaje(int id, String nombre, String genero, String recurso, String alcance, int anyo, List<Posicion> posicion, List<Habilidad> habilidadList) {
         this.id = id;
         this.nombre = nombre;
         this.genero = genero;
@@ -71,11 +71,11 @@ public class Personaje {
         this.anyo = anyo;
     }
 
-    public String getPosicion() {
+    public List<Posicion> getPosicion() {
         return posicion;
     }
 
-    public void setPosicion(String posicion) {
+    public void setPosicion(List<Posicion> posicion) {
         this.posicion = posicion;
     }
 

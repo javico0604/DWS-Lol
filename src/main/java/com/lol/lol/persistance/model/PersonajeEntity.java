@@ -3,6 +3,8 @@ package com.lol.lol.persistance.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,7 +22,7 @@ public class PersonajeEntity {
     private String alcance;
     private int anyo;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "personaje_posicion")
-    private PosicionEntity posicionEntity;
+    @ManyToMany
+    @JoinTable(name = "personajes_posiciones", joinColumns = @JoinColumn(name = "personaje_id"), inverseJoinColumns = @JoinColumn(name = "posicion_id"))
+    private List<PosicionEntity> posicionEntities;
 }

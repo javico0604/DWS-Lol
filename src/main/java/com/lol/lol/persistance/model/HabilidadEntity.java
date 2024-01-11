@@ -17,7 +17,8 @@ public class HabilidadEntity {
     private int id;
     private String nombre;
     private String tecla;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "personaje_id")
-    private int personajeId;
+    private PersonajeEntity personajeEntity;
 }

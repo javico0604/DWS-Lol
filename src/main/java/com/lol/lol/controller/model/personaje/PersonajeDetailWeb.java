@@ -1,6 +1,8 @@
 package com.lol.lol.controller.model.personaje;
 
 import com.lol.lol.controller.model.habilidad.HabilidadesListWeb;
+import com.lol.lol.controller.model.posicion.PosicionListWeb;
+import com.lol.lol.domain.entity.Posicion;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +18,6 @@ public class PersonajeDetailWeb {
     private String genero;
     private String recurso;
     private String alcance;
-    private String posicion;
+    private List<String> posicionListWebList;
     private List<HabilidadesListWeb> habilidadesListWebList;
 }

@@ -10,4 +10,6 @@ public interface PersonajeService {
     long getTotalNumberOfRecords();
 
     Personaje find(int id);
+
+    void delete(int id);
 }

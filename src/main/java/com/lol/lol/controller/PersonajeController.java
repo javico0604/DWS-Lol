@@ -32,10 +32,19 @@ public class PersonajeController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Response find(@PathVariable("id") int id){
-        PersonajeDetailWeb personajeDetailWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personajeService.find(id));
-        Response personaje = new Response(personajeDetailWeb);
-        return personaje;
+        Personaje personaje = personajeService.find(id);
+        PersonajeDetailWeb personajeDetailWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personaje);
+        personajeDetailWeb.setPosicionListWebList(personaje.getPosicion().stream().map(posicion -> posicion.getPosicion()).toList());
+
+        Response response = new Response(personajeDetailWeb);
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int id){
+        personajeService.delete(id);
     }
 }

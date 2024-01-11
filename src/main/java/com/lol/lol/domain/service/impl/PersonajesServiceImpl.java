@@ -37,13 +37,18 @@ public class PersonajesServiceImpl implements PersonajeService {
     public Personaje find(int id){
         Personaje personaje = personajeRepository.find(id).orElseThrow();
 
-        Posicion posicion = posicionRepository.findByPersonajeId(id);
-        personaje.setPosicion(posicion.getPosicion());
+        List<Posicion> posicionList = posicionRepository.findByPersonajeId(id);
+        personaje.setPosicion(posicionList);
 
         List<Habilidad> habilidadList = habilidadRepository.findByPersonajeId(id);
         personaje.setHabilidadList(habilidadList);
 
         return personaje;
+    }
+
+    @Override
+    public void delete(int id){
+        personajeRepository.delete(personajeRepository.find(id).orElse(null));
     }
 
 }

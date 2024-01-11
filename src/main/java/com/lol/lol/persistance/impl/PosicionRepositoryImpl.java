@@ -6,16 +6,20 @@ import com.lol.lol.mapper.PosicionMapper;
 import com.lol.lol.persistance.dao.PosicionDAO;
 import com.lol.lol.persistance.model.PosicionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+@Component
 public class PosicionRepositoryImpl implements PosicionRepository {
 
     @Autowired
     PosicionDAO posicionDAO;
 
     @Override
-    public Posicion findByPersonajeId(int id) {
-        PosicionEntity posicionEntity = posicionDAO.findByPersonajeId(id);
-        Posicion posicion = PosicionMapper.mapper.toPosicion(posicionEntity);
+    public List<Posicion> findByPersonajeId(int id) {
+        List<PosicionEntity> posicionEntity = posicionDAO.findByPersonajeId(id);
+        List<Posicion> posicion = PosicionMapper.mapper.toPosicion(posicionEntity);
         return posicion;
     }
 }

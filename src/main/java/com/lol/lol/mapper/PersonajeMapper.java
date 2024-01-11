@@ -18,5 +18,10 @@ public interface PersonajeMapper {
 
     PersonajeListWeb toPersonajeListWeb(Personaje personaje);
 
+    @Mapping(target = "habilidadesListWebList", expression = "java(HabilidadMapper.mapper.toHabilidadListWeb(personaje.getHabilidadList()))")
     PersonajeDetailWeb toPersonajeDetailWeb(Personaje personaje);
+
+    Personaje toPersonaje(PersonajeEntity personajeEntity);
+
+    PersonajeEntity toPersonajeEntity(Personaje personaje);
 }
