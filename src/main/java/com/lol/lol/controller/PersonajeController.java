@@ -1,0 +1,41 @@
+package com.lol.lol.controller;
+
+import com.lol.lol.controller.model.personaje.PersonajeDetailWeb;
+import com.lol.lol.controller.model.personaje.PersonajeListWeb;
+import com.lol.lol.domain.entity.Personaje;
+import com.lol.lol.domain.service.PersonajeService;
+import com.lol.lol.http_response.Response;
+import com.lol.lol.mapper.PersonajeMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping("/personajes")
+@RestController
+public class PersonajeController {
+
+    @Autowired
+    private PersonajeService personajeService;
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("")
+    public Response getAll(){
+        List<Personaje> personajes = personajeService.getAll();
+        List<PersonajeListWeb> personajeListWebs = personajes.stream()
+                .map(personaje -> PersonajeMapper.mapper.toPersonajeListWeb(personaje))
+                .toList();
+        long totalRecords = personajeService.getTotalNumberOfRecords();
+        Response response = new Response(personajeListWebs, totalRecords);
+        return response;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/id")
+    public Response find(@PathVariable("id") int id){
+        PersonajeDetailWeb personajeDetailWeb = PersonajeMapper.mapper.toPersonajeDetailWeb(personajeService.find(id));
+        Response personaje = new Response(personajeDetailWeb);
+        return personaje;
+    }
+}
