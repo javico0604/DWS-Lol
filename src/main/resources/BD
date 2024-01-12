@@ -30,7 +30,7 @@ create table habilidades(
 	nombre VARCHAR(50),
 	tecla VARCHAR(1),
 	personaje_id INT,
-	FOREIGN KEY (personaje_id) REFERENCES personajes(id)
+	FOREIGN KEY (personaje_id) REFERENCES personajes(id) on delete cascade
 );
 
 insert into personajes (nombre, genero, recurso, alcance, anyo) values ("Aatrox", "macho", "vida", "melee", 2013);

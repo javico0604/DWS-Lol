@@ -10,6 +10,7 @@ import com.lol.lol.domain.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,6 +50,14 @@ public class PersonajesServiceImpl implements PersonajeService {
     @Override
     public void delete(int id){
         personajeRepository.delete(personajeRepository.find(id).orElse(null));
+    }
+
+    @Override
+    public int create(Personaje personaje, List<Integer> posicionWebList) {
+        List<Posicion> posicionList = new ArrayList<>();
+        posicionWebList.forEach(p -> posicionList.add(posicionRepository.findById(p)));
+        personaje.setPosicion(posicionList);
+        return personajeRepository.create(personaje);
     }
 
 }

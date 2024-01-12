@@ -1,5 +1,6 @@
 package com.lol.lol.mapper;
 
+import com.lol.lol.controller.model.personaje.PersonajeCreateWeb;
 import com.lol.lol.controller.model.personaje.PersonajeDetailWeb;
 import com.lol.lol.controller.model.personaje.PersonajeListWeb;
 import com.lol.lol.domain.entity.Personaje;
@@ -23,5 +24,9 @@ public interface PersonajeMapper {
 
     Personaje toPersonaje(PersonajeEntity personajeEntity);
 
+    @Mapping(target = "posicionEntities", expression = "java(PosicionMapper.mapper.toPosicionEntityList(personaje.getPosicion()))")
     PersonajeEntity toPersonajeEntity(Personaje personaje);
+
+    @Mapping(target = "habilidadList", expression = "java(HabilidadMapper.mapper.toHabilidadList(personajeCreateWeb.getHabilidadCreateWebs()))")
+    Personaje toPersonaje(PersonajeCreateWeb personajeCreateWeb);
 }

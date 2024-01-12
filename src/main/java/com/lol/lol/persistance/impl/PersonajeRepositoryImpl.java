@@ -7,6 +7,7 @@ import com.lol.lol.persistance.dao.HabilidadDAO;
 import com.lol.lol.persistance.dao.PersonajeDAO;
 import com.lol.lol.persistance.model.PersonajeEntity;
 import jakarta.transaction.Transactional;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,6 +39,13 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     }
 
     @Override
+    @Transactional
+    public int create(Personaje personaje) {
+        PersonajeEntity personajeEntity = personajeDAO.save(PersonajeMapper.mapper.toPersonajeEntity(personaje));
+        return personajeEntity.getId();
+    }
+
+    @Override
     public Optional<Personaje> find(int id) {
         PersonajeEntity personajeEntity = personajeDAO.findById(id).orElse(null);
         if(personajeEntity == null){
@@ -46,10 +54,6 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
         return Optional.of(PersonajeMapper.mapper.toPersonaje(personajeEntity));
     }
 
-    @Override
-    public int insert(Personaje personajes) {
-        return 0;
-    }
 
     @Override
     public void update(Personaje personaje) {

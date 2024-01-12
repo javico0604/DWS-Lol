@@ -22,4 +22,9 @@ public class PosicionRepositoryImpl implements PosicionRepository {
         List<Posicion> posicion = PosicionMapper.mapper.toPosicion(posicionEntity);
         return posicion;
     }
+
+    @Override
+    public Posicion findById(int id){
+        return PosicionMapper.mapper.toPosicion(posicionDAO.findById(id).orElse(null));
+    }
 }

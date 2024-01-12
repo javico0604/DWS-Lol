@@ -12,4 +12,6 @@ public interface PersonajeService {
     Personaje find(int id);
 
     void delete(int id);
+
+    int create(Personaje personaje, List<Integer> habilidadList);
 }

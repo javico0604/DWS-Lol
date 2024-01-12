@@ -20,7 +20,6 @@ public class HabilidadRepositoryImpl implements HabilidadRepository {
     public List<Habilidad> findByPersonajeId(int id) {
         List<HabilidadEntity> habilidadEntities = habilidadDAO.findByPersonajeId(id);
         List<Habilidad> habilidadList = HabilidadMapper.mapper.toHabilidad(habilidadEntities);
-
         return habilidadList;
     }
 }

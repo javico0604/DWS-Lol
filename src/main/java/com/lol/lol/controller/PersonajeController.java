@@ -1,5 +1,6 @@
 package com.lol.lol.controller;
 
+import com.lol.lol.controller.model.personaje.PersonajeCreateWeb;
 import com.lol.lol.controller.model.personaje.PersonajeDetailWeb;
 import com.lol.lol.controller.model.personaje.PersonajeListWeb;
 import com.lol.lol.domain.entity.Personaje;
@@ -40,6 +41,16 @@ public class PersonajeController {
 
         Response response = new Response(personajeDetailWeb);
         return response;
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    public Response create(@RequestBody PersonajeCreateWeb personajeCreateWeb){
+        int id = personajeService.create(PersonajeMapper.mapper.toPersonaje(personajeCreateWeb), personajeCreateWeb.getPosicionList());
+        PersonajeListWeb personajeListWeb = new PersonajeListWeb();
+        personajeListWeb.setId(id);
+        personajeListWeb.setNombre(personajeCreateWeb.getNombre());
+        return new Response(personajeListWeb);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

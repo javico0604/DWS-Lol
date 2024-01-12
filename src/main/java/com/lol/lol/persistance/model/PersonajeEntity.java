@@ -22,7 +22,7 @@ public class PersonajeEntity {
     private String alcance;
     private int anyo;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "personajes_posiciones", joinColumns = @JoinColumn(name = "personaje_id"), inverseJoinColumns = @JoinColumn(name = "posicion_id"))
     private List<PosicionEntity> posicionEntities;
 }

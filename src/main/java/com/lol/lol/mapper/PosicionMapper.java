@@ -15,4 +15,8 @@ public interface PosicionMapper {
     List<Posicion> toPosicion(List<PosicionEntity> posicionEntity);
 
     List<PosicionListWeb> toPosicionListWeb(List<Posicion> posicionList);
+
+    Posicion toPosicion(PosicionEntity posicionEntity);
+
+    List<PosicionEntity> toPosicionEntityList(List<Posicion> posicionList);
 }
