@@ -3,6 +3,8 @@ package com.lol.lol.persistance.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,4 +18,5 @@ public class PosicionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String posicion;
+
 }

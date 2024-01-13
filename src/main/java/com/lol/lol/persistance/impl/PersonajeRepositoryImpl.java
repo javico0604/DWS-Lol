@@ -1,10 +1,14 @@
 package com.lol.lol.persistance.impl;
 
+import com.lol.lol.domain.entity.Habilidad;
 import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.repository.PersonajeRepository;
+import com.lol.lol.mapper.HabilidadMapper;
 import com.lol.lol.mapper.PersonajeMapper;
 import com.lol.lol.persistance.dao.HabilidadDAO;
 import com.lol.lol.persistance.dao.PersonajeDAO;
+import com.lol.lol.persistance.dao.PosicionDAO;
+import com.lol.lol.persistance.model.HabilidadEntity;
 import com.lol.lol.persistance.model.PersonajeEntity;
 import jakarta.transaction.Transactional;
 import jdk.swing.interop.SwingInterOpUtils;
@@ -20,10 +24,13 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     private final PersonajeDAO personajeDAO;
     private final HabilidadDAO habilidadDAO;
 
+    private final PosicionDAO posicionDAO;
+
     @Autowired
-    public PersonajeRepositoryImpl(PersonajeDAO personajeDAO, HabilidadDAO habilidadDAO) {
+    public PersonajeRepositoryImpl(PersonajeDAO personajeDAO, HabilidadDAO habilidadDAO, PosicionDAO posicionDAO) {
         this.personajeDAO = personajeDAO;
         this.habilidadDAO = habilidadDAO;
+        this.posicionDAO = posicionDAO;
     }
     @Override
     public List<Personaje> getAll() {
@@ -40,8 +47,15 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
 
     @Override
     @Transactional
-    public int create(Personaje personaje) {
+    public int create(Personaje personaje, List<Habilidad> habilidadList) {
+        System.out.println(PersonajeMapper.mapper.toPersonajeEntity(personaje));
         PersonajeEntity personajeEntity = personajeDAO.save(PersonajeMapper.mapper.toPersonajeEntity(personaje));
+        List<HabilidadEntity> habilidadEntityList = HabilidadMapper.mapper.toHabilidadEntity(habilidadList);
+        personajeEntity.getPosicionEntities().forEach(posicionEntity -> posicionDAO.save(posicionEntity));
+        habilidadEntityList.forEach(habilidadEntity ->
+                {habilidadEntity.setPersonajeEntity(personajeEntity);
+                habilidadDAO.save(habilidadEntity);
+            });
         return personajeEntity.getId();
     }
 

@@ -57,7 +57,7 @@ public class PersonajesServiceImpl implements PersonajeService {
         List<Posicion> posicionList = new ArrayList<>();
         posicionWebList.forEach(p -> posicionList.add(posicionRepository.findById(p)));
         personaje.setPosicion(posicionList);
-        return personajeRepository.create(personaje);
+        return personajeRepository.create(personaje, personaje.getHabilidadList());
     }
 
 }

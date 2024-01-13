@@ -1,6 +1,8 @@
 package com.lol.lol.domain.repository;
 
+import com.lol.lol.domain.entity.Habilidad;
 import com.lol.lol.domain.entity.Personaje;
+import com.lol.lol.persistance.model.HabilidadEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +16,5 @@ public interface PersonajeRepository {
 
     long getTotalNumberOfRecords();
 
-    int create(Personaje personaje);
+    int create(Personaje personaje, List<Habilidad> habilidadList);
 }

@@ -18,4 +18,6 @@ public interface HabilidadMapper {
     List<HabilidadesListWeb> toHabilidadListWeb(List<Habilidad> habilidadList);
 
     List<Habilidad> toHabilidadList(List<HabilidadCreateWeb> habilidadCreateWebs);
+
+    List<HabilidadEntity> toHabilidadEntity(List<Habilidad> habilidadList);
 }

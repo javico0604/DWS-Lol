@@ -15,6 +15,7 @@ public class PersonajeCreateWeb {
      private String genero;
      private String recurso;
      private String alcance;
+     private int anyo;
      private List<Integer> posicionList;
      private List<HabilidadCreateWeb> habilidadCreateWebs;
 }
