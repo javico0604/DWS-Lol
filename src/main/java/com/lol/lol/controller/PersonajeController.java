@@ -3,6 +3,7 @@ package com.lol.lol.controller;
 import com.lol.lol.controller.model.personaje.PersonajeCreateWeb;
 import com.lol.lol.controller.model.personaje.PersonajeDetailWeb;
 import com.lol.lol.controller.model.personaje.PersonajeListWeb;
+import com.lol.lol.controller.model.personaje.PersonajeUpdateWeb;
 import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.service.PersonajeService;
 import com.lol.lol.http_response.Response;
@@ -50,6 +51,17 @@ public class PersonajeController {
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();
         personajeListWeb.setId(id);
         personajeListWeb.setNombre(personajeCreateWeb.getNombre());
+        return new Response(personajeListWeb);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/{id}")
+    public Response update(@RequestBody PersonajeUpdateWeb personajeUpdateWeb, @PathVariable("id") int id){
+        personajeUpdateWeb.setId(id);
+        personajeService.update(PersonajeMapper.mapper.toPersonaje(personajeUpdateWeb), personajeUpdateWeb.getPosicionList());
+        PersonajeListWeb personajeListWeb = new PersonajeListWeb();
+        personajeListWeb.setId(id);
+        personajeListWeb.setNombre(personajeUpdateWeb.getNombre());
         return new Response(personajeListWeb);
     }
 

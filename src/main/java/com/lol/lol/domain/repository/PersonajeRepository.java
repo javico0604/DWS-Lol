@@ -16,5 +16,6 @@ public interface PersonajeRepository {
 
     long getTotalNumberOfRecords();
 
-    int create(Personaje personaje, List<Habilidad> habilidadList);
+    int create(Personaje personaje);
+
 }

@@ -22,7 +22,13 @@ public class PersonajeEntity {
     private String alcance;
     private int anyo;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "personajes_posiciones", joinColumns = @JoinColumn(name = "personaje_id"), inverseJoinColumns = @JoinColumn(name = "posicion_id"))
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "personaje_id")
+    private List<HabilidadEntity> habilidadEntities;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "personajes_posiciones",
+            joinColumns = @JoinColumn(name = "personaje_id"),
+            inverseJoinColumns = @JoinColumn(name = "posicion_id"))
     private List<PosicionEntity> posicionEntities;
 }

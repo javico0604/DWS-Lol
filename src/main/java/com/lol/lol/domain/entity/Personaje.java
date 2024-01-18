@@ -1,5 +1,6 @@
 package com.lol.lol.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Personaje {
@@ -78,6 +79,14 @@ public class Personaje {
     public void setPosicion(List<Posicion> posicion) {
         this.posicion = posicion;
     }
+
+    public void setPosicion(Posicion posicion) {
+        if(this.posicion == null) {
+            this.posicion =  new ArrayList<>();
+        }
+        this.posicion.add(posicion);
+    }
+
 
     public List<Habilidad> getHabilidadList() {
         return habilidadList;

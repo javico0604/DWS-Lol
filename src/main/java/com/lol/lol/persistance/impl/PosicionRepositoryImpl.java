@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PosicionRepositoryImpl implements PosicionRepository {
@@ -24,7 +25,7 @@ public class PosicionRepositoryImpl implements PosicionRepository {
     }
 
     @Override
-    public Posicion findById(int id){
-        return PosicionMapper.mapper.toPosicion(posicionDAO.findById(id).orElse(null));
+    public Optional<Posicion> findById(int id){
+        return Optional.ofNullable(PosicionMapper.mapper.toPosicion(posicionDAO.findById(id).orElse(null)));
     }
 }

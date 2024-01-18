@@ -47,15 +47,9 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
 
     @Override
     @Transactional
-    public int create(Personaje personaje, List<Habilidad> habilidadList) {
-        System.out.println(PersonajeMapper.mapper.toPersonajeEntity(personaje));
-        PersonajeEntity personajeEntity = personajeDAO.save(PersonajeMapper.mapper.toPersonajeEntity(personaje));
-        List<HabilidadEntity> habilidadEntityList = HabilidadMapper.mapper.toHabilidadEntity(habilidadList);
-        personajeEntity.getPosicionEntities().forEach(posicionEntity -> posicionDAO.save(posicionEntity));
-        habilidadEntityList.forEach(habilidadEntity ->
-                {habilidadEntity.setPersonajeEntity(personajeEntity);
-                habilidadDAO.save(habilidadEntity);
-            });
+    public int create(Personaje personaje) {
+        PersonajeEntity personajeEntity = PersonajeMapper.mapper.toPersonajeEntity(personaje);
+        personajeDAO.save(personajeEntity);
         return personajeEntity.getId();
     }
 
@@ -71,7 +65,7 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
 
     @Override
     public void update(Personaje personaje) {
-
+        PersonajeEntity personajeEntity = personajeDAO.save(PersonajeMapper.mapper.toPersonajeEntity(personaje));
     }
 
     @Override

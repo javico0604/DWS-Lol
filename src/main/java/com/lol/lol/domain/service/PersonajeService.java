@@ -13,5 +13,7 @@ public interface PersonajeService {
 
     void delete(int id);
 
-    int create(Personaje personaje, List<Integer> habilidadList);
+    int create(Personaje personaje, List<Integer> posicionList);
+
+    void update(Personaje personaje, List<Integer> posicionList);
 }

@@ -65,7 +65,7 @@ insert into habilidades (nombre, tecla, personaje_id) values ("DESTRUCTOR DE MUN
 insert into habilidades (nombre, tecla, personaje_id) values ("CORTE DE GUADAÑA", "Q", 2);
 insert into habilidades (nombre, tecla, personaje_id) values ("GOLPE DE HOJA", "W", 2);
 insert into habilidades (nombre, tecla, personaje_id) values ("PASOS DE SOMBRA", "E", 2);
-insert into habilidades (nombre, tecla, personaje_id) values ("INVASIÓN SOMBRÍA", R, 2);
+insert into habilidades (nombre, tecla, personaje_id) values ("INVASIÓN SOMBRÍA", "R", 2);
 
 insert into habilidades (nombre, tecla, personaje_id) values ("Proyectil mistral", "Q", 3);
 insert into habilidades (nombre, tecla, personaje_id) values ("Espacio personal", "W", 3);
