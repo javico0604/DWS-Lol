@@ -1,8 +1,13 @@
 package com.lol.lol.domain.entity;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Habilidad {
     private int id;
     private String nombre;
+    @NotNull
+    @Size(max = 1)
     private String tecla;
     private int personajeId;
 
