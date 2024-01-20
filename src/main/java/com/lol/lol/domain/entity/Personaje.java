@@ -14,14 +14,8 @@ public class Personaje {
     private String genero;
     private String recurso;
     private String alcance;
-    @NotNull
-    @Min(value = 2009, message = "El año debe ser posterior a 2009")
     private int anyo;
-    @NotEmpty
-    @Size(min = 1, max = 5, message = "Tiene que tener al menos una posicion o maximo 5")
     private List<Posicion> posicion;
-    @NotEmpty
-    @Size(min = 4, max = 4, message = "Tienen que haber 4 habilidades")
     private List<Habilidad> habilidadList;
 
     public Personaje(int id, String nombre, String genero, String recurso, String alcance, int anyo, List<Posicion> posicion, List<Habilidad> habilidadList) {

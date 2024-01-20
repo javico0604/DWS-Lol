@@ -8,6 +8,7 @@ import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.service.PersonajeService;
 import com.lol.lol.http_response.Response;
 import com.lol.lol.mapper.PersonajeMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class PersonajeController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response create(@RequestBody PersonajeCreateWeb personajeCreateWeb){
+    public Response create(@Valid @RequestBody PersonajeCreateWeb personajeCreateWeb){
         int id = personajeService.create(PersonajeMapper.mapper.toPersonaje(personajeCreateWeb), personajeCreateWeb.getPosicionList());
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();
         personajeListWeb.setId(id);
