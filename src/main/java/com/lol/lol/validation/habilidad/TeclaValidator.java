@@ -14,8 +14,7 @@ public class TeclaValidator implements ConstraintValidator<ValidTecla, String>{
 
     @Override
     public boolean isValid(String tecla, ConstraintValidatorContext context) {
-        System.out.println("fdsfsd");
-        return (Objects.equals(tecla, "Q") || Objects.equals(tecla, "W") || Objects.equals(tecla, "E") || Objects.equals(tecla, "R"));
+        return (tecla.equals("Q") || tecla.equals("W") || tecla.equals("E") || tecla.equals("R") );
     }
 
 }

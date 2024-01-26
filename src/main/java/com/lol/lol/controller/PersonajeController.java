@@ -11,9 +11,12 @@ import com.lol.lol.mapper.PersonajeMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.lol.lol.validation.Validation.validate;
 
 @RequestMapping("/personajes")
 @RestController
@@ -47,7 +50,8 @@ public class PersonajeController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public Response create(@Valid @RequestBody PersonajeCreateWeb personajeCreateWeb){
+    public Response create(@RequestBody PersonajeCreateWeb personajeCreateWeb){
+        validate(personajeCreateWeb);
         int id = personajeService.create(PersonajeMapper.mapper.toPersonaje(personajeCreateWeb), personajeCreateWeb.getPosicionList());
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();
         personajeListWeb.setId(id);
@@ -58,6 +62,7 @@ public class PersonajeController {
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping("/{id}")
     public Response update(@RequestBody PersonajeUpdateWeb personajeUpdateWeb, @PathVariable("id") int id){
+        validate(personajeUpdateWeb);
         personajeUpdateWeb.setId(id);
         personajeService.update(PersonajeMapper.mapper.toPersonaje(personajeUpdateWeb), personajeUpdateWeb.getPosicionList());
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();

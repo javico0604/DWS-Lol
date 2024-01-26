@@ -55,7 +55,8 @@ public class PersonajesServiceImpl implements PersonajeService {
     @Override
     public int create(Personaje personaje, List<Integer> posicionWebList) {
         posicionWebList.forEach(
-                p -> personaje.setPosicion(posicionRepository.findById(p).orElse(null)));
+                p -> personaje.setPosicion(posicionRepository.findById(p).orElse(null))
+        );
 
         return personajeRepository.create(personaje);
     }

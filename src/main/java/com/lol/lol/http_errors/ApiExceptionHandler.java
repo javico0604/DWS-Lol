@@ -2,6 +2,7 @@ package com.lol.lol.http_errors;
 
 
 import com.lol.lol.exception.ResourceNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,10 +25,18 @@ public class ApiExceptionHandler {
     @ExceptionHandler({
             Exception.class
     })
+
+    @ResponseBody
+    public ErrorMessage badRequest(Exception exception) {
+        return new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({
+            ValidationException.class
+    })
     @ResponseBody
     public ErrorMessage exception(Exception exception) {
-        exception.printStackTrace();
-        return new ErrorMessage("Internal error", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return new ErrorMessage(exception.getMessage(), HttpStatus.BAD_REQUEST.value());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
