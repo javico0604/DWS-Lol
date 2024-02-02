@@ -2,6 +2,7 @@ package com.lol.lol.persistance.impl;
 
 import com.lol.lol.domain.entity.Habilidad;
 import com.lol.lol.domain.entity.Personaje;
+import com.lol.lol.domain.repository.HabilidadRepository;
 import com.lol.lol.domain.repository.PersonajeRepository;
 import com.lol.lol.mapper.HabilidadMapper;
 import com.lol.lol.mapper.PersonajeMapper;
@@ -25,12 +26,14 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     private final HabilidadDAO habilidadDAO;
 
     private final PosicionDAO posicionDAO;
+    private final HabilidadRepository habilidadRepository;
 
     @Autowired
-    public PersonajeRepositoryImpl(PersonajeDAO personajeDAO, HabilidadDAO habilidadDAO, PosicionDAO posicionDAO) {
+    public PersonajeRepositoryImpl(HabilidadRepository habilidadRepository, PersonajeDAO personajeDAO, HabilidadDAO habilidadDAO, PosicionDAO posicionDAO) {
         this.personajeDAO = personajeDAO;
         this.habilidadDAO = habilidadDAO;
         this.posicionDAO = posicionDAO;
+        this.habilidadRepository = habilidadRepository;
     }
     @Override
     public List<Personaje> getAll() {
@@ -75,7 +78,7 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
 
     @Override
     @Transactional
-    public void delete(Personaje personaje) {
-        personajeDAO.delete(PersonajeMapper.mapper.toPersonajeEntity(personaje));
+    public void delete(int id) {
+        personajeDAO.deleteById(id);
     }
 }

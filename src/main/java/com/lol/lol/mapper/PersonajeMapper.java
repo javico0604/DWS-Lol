@@ -25,13 +25,11 @@ public interface PersonajeMapper {
 
     Personaje toPersonaje(PersonajeEntity personajeEntity);
 
-    @Mapping(target = "habilidadList", expression = "java(HabilidadMapper.mapper.toHabilidadList(personajeUpdateWeb.getHabilidadCreateWebs()))")
     Personaje toPersonaje(PersonajeUpdateWeb personajeUpdateWeb);
 
     @Mapping(target = "posicionEntities", expression = "java(PosicionMapper.mapper.toPosicionEntityList(personaje.getPosicion()))")
     @Mapping(target = "habilidadEntities", expression = "java(HabilidadMapper.mapper.toHabilidadEntity(personaje.getHabilidadList()))")
     PersonajeEntity toPersonajeEntity(Personaje personaje);
 
-    @Mapping(target = "habilidadList", expression = "java(HabilidadMapper.mapper.toHabilidadList(personajeCreateWeb.getHabilidadCreateWebs()))")
     Personaje toPersonaje(PersonajeCreateWeb personajeCreateWeb);
 }

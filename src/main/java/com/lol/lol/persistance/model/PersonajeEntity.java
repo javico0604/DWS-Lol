@@ -22,7 +22,7 @@ public class PersonajeEntity {
     private String alcance;
     private int anyo;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "personaje_id")
     private List<HabilidadEntity> habilidadEntities;
 

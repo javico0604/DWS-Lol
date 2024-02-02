@@ -12,6 +12,5 @@ import lombok.ToString;
 @ToString
 public class HabilidadCreateWeb {
     private String nombre;
-    @ValidTecla
     private String tecla;
 }

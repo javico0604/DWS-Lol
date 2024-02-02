@@ -12,7 +12,7 @@ public interface PersonajeRepository {
     Optional<Personaje> find(int id);
     void update(Personaje personaje);
     List<Personaje> findByHabilidadId(int habilidadId);
-    void delete(Personaje personaje);
+    void delete(int id);
 
     long getTotalNumberOfRecords();
 

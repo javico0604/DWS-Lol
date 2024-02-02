@@ -1,5 +1,6 @@
 package com.lol.lol.domain.service.impl;
 
+import com.lol.lol.controller.model.habilidad.HabilidadCreateWeb;
 import com.lol.lol.domain.entity.Habilidad;
 import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.entity.Posicion;
@@ -10,8 +11,9 @@ import com.lol.lol.domain.service.PersonajeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.lol.lol.validation.Validation.validate;
 
 @Service
 public class PersonajesServiceImpl implements PersonajeService {
@@ -49,22 +51,33 @@ public class PersonajesServiceImpl implements PersonajeService {
 
     @Override
     public void delete(int id){
-        personajeRepository.delete(personajeRepository.find(id).orElse(null));
+        personajeRepository.delete(id);
     }
 
     @Override
-    public int create(Personaje personaje, List<Integer> posicionWebList) {
+    public int create(Personaje personaje, List<Integer> posicionWebList, List<Habilidad> habilidadList) {
         posicionWebList.forEach(
                 p -> personaje.setPosicion(posicionRepository.findById(p).orElse(null))
         );
-
+        habilidadList.forEach(h->{
+                    validate(h);
+                    personaje.setHabilidad(h);
+                }
+        );
+        validate(personaje);
         return personajeRepository.create(personaje);
     }
 
     @Override
-    public void update(Personaje personaje, List<Integer> posicionWebList) {
+    public void update(Personaje personaje, List<Integer> posicionWebList, List<Habilidad> habilidadList) {
         posicionWebList.forEach(
                 p -> personaje.setPosicion(posicionRepository.findById(p).orElse(null)));
+        habilidadList.forEach(h->{
+                    validate(h);
+                    personaje.setHabilidad(h);
+                }
+        );
+        validate(personaje);
         personajeRepository.update(personaje);
     }
 

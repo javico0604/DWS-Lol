@@ -7,6 +7,7 @@ import com.lol.lol.controller.model.personaje.PersonajeUpdateWeb;
 import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.service.PersonajeService;
 import com.lol.lol.http_response.Response;
+import com.lol.lol.mapper.HabilidadMapper;
 import com.lol.lol.mapper.PersonajeMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,7 @@ public class PersonajeController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public Response create(@RequestBody PersonajeCreateWeb personajeCreateWeb){
-        validate(personajeCreateWeb);
-        int id = personajeService.create(PersonajeMapper.mapper.toPersonaje(personajeCreateWeb), personajeCreateWeb.getPosicionList());
+        int id = personajeService.create(PersonajeMapper.mapper.toPersonaje(personajeCreateWeb), personajeCreateWeb.getPosicionList(), HabilidadMapper.mapper.toHabilidadList(personajeCreateWeb.getHabilidadCreateWebs()));
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();
         personajeListWeb.setId(id);
         personajeListWeb.setNombre(personajeCreateWeb.getNombre());
@@ -64,7 +64,7 @@ public class PersonajeController {
     public Response update(@RequestBody PersonajeUpdateWeb personajeUpdateWeb, @PathVariable("id") int id){
         validate(personajeUpdateWeb);
         personajeUpdateWeb.setId(id);
-        personajeService.update(PersonajeMapper.mapper.toPersonaje(personajeUpdateWeb), personajeUpdateWeb.getPosicionList());
+        personajeService.update(PersonajeMapper.mapper.toPersonaje(personajeUpdateWeb), personajeUpdateWeb.getPosicionList(),HabilidadMapper.mapper.toHabilidadList(personajeUpdateWeb.getHabilidadCreateWebs()));
         PersonajeListWeb personajeListWeb = new PersonajeListWeb();
         personajeListWeb.setId(id);
         personajeListWeb.setNombre(personajeUpdateWeb.getNombre());

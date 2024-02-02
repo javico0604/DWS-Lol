@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 public class Habilidad {
     private int id;
     private String nombre;
+    @ValidTecla
     private String tecla;
     private int personajeId;
 
