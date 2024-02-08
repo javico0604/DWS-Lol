@@ -1,8 +1,6 @@
 package com.lol.lol.domain.entity;
 
-import com.lol.lol.validation.habilidad.ValidTecla;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import com.lol.lol.common.validation.habilidad.ValidTecla;
 
 public class Habilidad {
     private int id;

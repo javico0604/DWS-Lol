@@ -1,6 +1,6 @@
 package com.lol.lol.domain.entity;
 
-import com.lol.lol.validation.habilidad.ValidTecla;
+import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -8,12 +8,17 @@ import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Personaje {
     private int id;
+    @NotNull
     private String nombre;
+    @NotNull
     private String genero;
+    @NotNull
     private String recurso;
+    @NotNull
     private String alcance;
     @NotNull
     @Min(value = 2009, message = "El año debe ser posterior a 2009")
@@ -112,6 +117,11 @@ public class Personaje {
         if(habilidadList == null) {
             habilidadList = new ArrayList<>();
         }
+        habilidadList.forEach(h -> {
+            if(Objects.equals(h.getTecla(), habilidad.getTecla())){
+                throw new ValidationException("No se puede repetir la tecla");
+            }
+        });
         habilidadList.add(habilidad);
     }
 

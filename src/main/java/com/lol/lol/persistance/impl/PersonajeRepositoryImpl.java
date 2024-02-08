@@ -59,9 +59,6 @@ public class PersonajeRepositoryImpl implements PersonajeRepository {
     @Override
     public Optional<Personaje> find(int id) {
         PersonajeEntity personajeEntity = personajeDAO.findById(id).orElse(null);
-        if(personajeEntity == null){
-            return Optional.empty();
-        }
         return Optional.of(PersonajeMapper.mapper.toPersonaje(personajeEntity));
     }
 

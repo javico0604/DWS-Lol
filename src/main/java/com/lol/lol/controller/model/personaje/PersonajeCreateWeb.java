@@ -1,11 +1,6 @@
 package com.lol.lol.controller.model.personaje;
 
 import com.lol.lol.controller.model.habilidad.HabilidadCreateWeb;
-import com.lol.lol.validation.habilidad.ValidTecla;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

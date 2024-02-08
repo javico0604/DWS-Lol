@@ -9,15 +9,13 @@ import com.lol.lol.domain.service.PersonajeService;
 import com.lol.lol.http_response.Response;
 import com.lol.lol.mapper.HabilidadMapper;
 import com.lol.lol.mapper.PersonajeMapper;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.lol.lol.validation.Validation.validate;
+import static com.lol.lol.common.validation.Validation.validate;
 
 @RequestMapping("/personajes")
 @RestController

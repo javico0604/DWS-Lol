@@ -1,6 +1,5 @@
 package com.lol.lol.domain.service.impl;
 
-import com.lol.lol.controller.model.habilidad.HabilidadCreateWeb;
 import com.lol.lol.domain.entity.Habilidad;
 import com.lol.lol.domain.entity.Personaje;
 import com.lol.lol.domain.entity.Posicion;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.lol.lol.validation.Validation.validate;
+import static com.lol.lol.common.validation.Validation.validate;
 
 @Service
 public class PersonajesServiceImpl implements PersonajeService {
@@ -64,6 +63,7 @@ public class PersonajesServiceImpl implements PersonajeService {
                     personaje.setHabilidad(h);
                 }
         );
+
         validate(personaje);
         return personajeRepository.create(personaje);
     }

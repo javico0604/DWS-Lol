@@ -1,4 +1,4 @@
-package com.lol.lol.validation.habilidad;
+package com.lol.lol.common.validation.habilidad;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

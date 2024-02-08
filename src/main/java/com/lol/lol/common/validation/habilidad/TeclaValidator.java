@@ -1,9 +1,7 @@
-package com.lol.lol.validation.habilidad;
+package com.lol.lol.common.validation.habilidad;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import java.util.Objects;
 
 public class TeclaValidator implements ConstraintValidator<ValidTecla, String>{
 

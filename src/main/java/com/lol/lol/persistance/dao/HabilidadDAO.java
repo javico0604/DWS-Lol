@@ -14,4 +14,6 @@ public interface HabilidadDAO extends JpaRepository<HabilidadEntity, Integer> {
 
     @Query(value = "select * from habilidades where personaje_id = :personajeId", nativeQuery = true)
     List<HabilidadEntity> findByPersonajeId(@Param("personajeId") int id);
+
+    //List<HabilidadEntity> findByPersonajeEntityId(int id);
 }
